@@ -1,0 +1,40 @@
+﻿@page "/addbook"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>Add New Book</h3>
+
+<div>
+    <label>Title: </label>
+    <input @bind="newBook.Title" /><br />
+
+    <label>Author: </label>
+    <input @bind="newBook.Author" /><br />
+
+    <label>ISBN: </label>
+    <input @bind="newBook.ISBN" /><br />
+
+    <button @onclick="ButtonAddBook" type="button">Add Book</button>
+    <button @onclick="Cancel" type="button">Cancel</button>
+</div>
+
+@code {
+    private Book newBook = new Book();
+
+    private async Task ButtonAddBook()
+    {
+        if (newBook != null)
+        {
+            await LIB.AddBook(newBook.Title, newBook.Author, newBook.ISBN);
+        }
+        Nav.NavigateTo("/listbooks");
+    }
+
+    private async Task Cancel()
+    {
+        Nav.NavigateTo("/listbooks");
+    }
+}

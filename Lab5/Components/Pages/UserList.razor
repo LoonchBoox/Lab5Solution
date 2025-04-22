@@ -1,0 +1,22 @@
+﻿@page "/listusers"
+@using Lab5.Models
+@using Lab5.Services
+@inject NavigationManager Nav
+@inject ILibraryService LIB
+
+<PageTitle>User List</PageTitle>
+
+<ul>
+	@foreach (var user in LIB.users)
+	{
+		<li>
+			<a href="@($"/edituser/{user.Id}")">
+				@user.Id - @user.Name - @user.Email
+			</a>
+		</li>
+	}
+</ul>
+
+@code {
+
+}

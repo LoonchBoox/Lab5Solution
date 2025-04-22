@@ -1,0 +1,40 @@
+﻿@page "/addborrow"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>Create Borrow</h3>
+
+<div>
+    <label>User ID: </label>
+    <input type="number" @bind="userId" /><br />
+
+    <label>Book ID: </label>
+    <input type="number" @bind="bookId" /><br />
+
+    <button @onclick="CreateBorrow" type="button">Create Borrow</button>
+</div>
+
+@code {
+    private int userId;
+    private int bookId;
+
+    private async Task CreateBorrow()
+    {
+        var user = LIB.users.FirstOrDefault(u => u.Id == userId);
+        var book = LIB.books.FirstOrDefault(b => b.Id == bookId);
+
+        if (user != null && book != null)
+        {
+            if (!LIB.borrowedBooks.ContainsKey(user))
+            {
+                LIB.borrowedBooks[user] = new List<Book>();
+            }
+
+            LIB.borrowedBooks[user].Add(book);
+            Nav.NavigateTo("addborrow" , forceLoad: true);
+        }
+    }
+}

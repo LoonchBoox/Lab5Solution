@@ -1,0 +1,54 @@
+﻿@page "/edituser/{Id:int}"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>Edit User</h3>
+
+<div>
+    <label>Name: </label>
+    <input @bind="newuser.Name" /><br />
+
+    <label>Email: </label>
+    <input @bind="newuser.Email" /><br />
+
+    <button @onclick="Save" type="button">Save</button>
+    <button @onclick="Delete">Delete</button>
+    <button @onclick="Cancel" type="button">Cancel</button>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private User? user;
+    private User? newuser;
+
+    protected override void OnInitialized()
+    {
+        user = LIB.users.FirstOrDefault(u => u.Id == Id);
+        newuser = new User();
+        newuser.Id = user.Id;
+        newuser.Name = user.Name;
+        newuser.Email = user.Email;
+    }
+
+    private async Task Cancel()
+    {
+        Nav.NavigateTo("/listusers");
+    }
+
+    private async Task Save()
+    {
+        await LIB.EditUser(user, newuser);
+        Nav.NavigateTo("/listusers");
+    }
+
+    private async Task Delete()
+    {
+        await LIB.DeleteUser(user);
+        Nav.NavigateTo("/listusers");
+    }
+}

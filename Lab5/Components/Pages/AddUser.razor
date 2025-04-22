@@ -1,0 +1,37 @@
+﻿@page "/adduser"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>Add New User</h3>
+
+<div>
+    <label>Name: </label>
+    <input @bind="newUser.Name" /><br />
+
+    <label>Email: </label>
+    <input @bind="newUser.Email" /><br />
+
+    <button @onclick="ButtonAddUser" type="button">Add User</button>
+    <button @onclick="Cancel" type="button">Cancel</button>
+</div>
+
+@code {
+    private User newUser = new User();
+
+    private async Task ButtonAddUser()
+    {
+        if (newUser != null)
+        {
+            await LIB.AddUser(newUser.Name, newUser.Email);
+        }
+        Nav.NavigateTo("/listusers");
+    }
+
+    private async Task Cancel()
+    {
+        Nav.NavigateTo("/listusers");
+    }
+}

@@ -1,0 +1,21 @@
+﻿@page "/listbooks"
+@using Lab5.Models
+@using Lab5.Services
+@inject NavigationManager Nav
+@inject ILibraryService LIB
+
+<PageTitle>Books List</PageTitle>
+
+<ul>
+		@foreach (var book in LIB.books) {
+				<li>
+					<a href="@($"/editbook/{book.Id}")">
+						@book.Id - @book.Title @book.Author - ISBN: @book.ISBN
+					</a>
+				</li>
+		}
+</ul>
+
+@code {
+
+}

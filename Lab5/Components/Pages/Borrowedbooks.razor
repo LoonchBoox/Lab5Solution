@@ -1,0 +1,49 @@
+﻿@page "/borrowedbooks/{UserId:int}"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>List of Borrowed Books for User ID: @UserId</h3>
+
+@if (borrowedBooks.Count == 0)
+{
+    <p>No books are currently borrowed by this user.</p>
+}
+else
+{
+    <ul>
+        @foreach (var book in borrowedBooks)
+        {
+            <li>
+                @book.Title by @book.Author
+                <button @onclick="() => ReturnBook(book)">Return Book</button>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    private User? user;
+    private List<Book> borrowedBooks = new List<Book>();
+
+    protected override void OnInitialized()
+    {
+        user = LIB.users.FirstOrDefault(u => u.Id == UserId);
+        borrowedBooks = LIB.borrowedBooks.ContainsKey(user) ? LIB.borrowedBooks[user] : new List<Book>();
+    }
+
+    private async Task ReturnBook(Book book)
+    {
+        if (LIB.borrowedBooks.ContainsKey(user))
+        {
+            LIB.borrowedBooks[user].Remove(book);
+        }
+        StateHasChanged();
+    }
+
+}

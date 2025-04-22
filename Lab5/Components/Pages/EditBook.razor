@@ -1,0 +1,60 @@
+﻿@page "/editbook/{Id:int}"
+@using Lab5.Models
+@using Lab5.Services
+@inject ILibraryService LIB
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<h3>Edit Book</h3>
+
+
+<div>
+    <label>Title: </label>
+    <input @bind="newbook.Title" /><br />
+
+    <label>Author: </label>
+    <input @bind="newbook.Author" /><br />
+
+    <label>ISBN: </label>
+    <input @bind="newbook.ISBN" /><br />
+
+    <button @onclick="Save" type="button">Save</button>
+    <button @onclick="Delete">Delete</button>
+    <button @onclick="Cancel" type="button">Cancel</button>
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Book? book;
+    private Book? newbook;
+
+    protected override void OnInitialized()
+    {
+        book = LIB.books.FirstOrDefault(b => b.Id == Id);
+        newbook = new Book();
+        newbook.Id = book.Id;
+        newbook.Title = book.Title;
+        newbook.Author = book.Author;
+        newbook.ISBN = book.ISBN;
+    }
+
+    private async Task Cancel()
+    {
+        Nav.NavigateTo("/listbooks");
+    }
+
+    private async Task Save()
+    {
+        await LIB.EditBook(book, newbook);
+        Nav.NavigateTo("/listbooks");
+    }
+
+    private async Task Delete()
+    {
+        await LIB.DeleteBook(book);
+        Nav.NavigateTo("/listbooks");
+    }
+}

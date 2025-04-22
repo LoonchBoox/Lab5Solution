@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject NavigationManager Nav
+@rendermode RenderMode.InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Enter a user ID to view borrows</h1>
+<input @bind="userid" />
+<button @onclick="Enter" type="button">Enter</button>
+
+@code{
+	private int userid;
+
+	private async Task Enter()
+	{
+		Nav.NavigateTo($"/borrowedbooks/{userid}");
+	}
+}
