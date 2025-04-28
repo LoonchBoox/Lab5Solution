@@ -18,8 +18,10 @@ namespace Lab5.Services
 
 		public async Task AddBook(string title, string author, string isbn)
 		{
-			int id = books.Any() ? books.Max(b => b.Id) + 1 : 1;
-			books.Add(new Book { Id = id, Title = title, Author = author, ISBN = isbn });
+			//commented out this code to make the test fail
+
+			//int id = books.Any() ? books.Max(b => b.Id) + 1 : 1;
+			//books.Add(new Book { Id = id, Title = title, Author = author, ISBN = isbn });
 		}
 
 		public async Task AddUser(string name, string email)
