@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\adali\\Desktop\\Lab5Solution\\Lab5\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{003AA4E8-DC8D-40BF-972A-0DE081C75429}|Lab5.csproj|c:\\users\\adali\\desktop\\lab5solution\\lab5\\services\\libraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{003AA4E8-DC8D-40BF-972A-0DE081C75429}|Lab5.csproj|solutionrelative:services\\libraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adali\\Downloads\\Lab5\\TestProject1\\Tests\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -13,11 +17,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Test1.cs",
               "DocumentMoniker": "C:\\Users\\adali\\Downloads\\Lab5\\TestProject1\\Tests\\Test1.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\Lab5\\TestProject1\\Tests\\Test1.cs",
@@ -27,6 +31,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T17:48:05.361Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LibraryService.cs",
+              "DocumentMoniker": "C:\\Users\\adali\\Desktop\\Lab5Solution\\Lab5\\Services\\LibraryService.cs",
+              "RelativeDocumentMoniker": "Services\\LibraryService.cs",
+              "ToolTip": "C:\\Users\\adali\\Desktop\\Lab5Solution\\Lab5\\Services\\LibraryService.cs",
+              "RelativeToolTip": "Services\\LibraryService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T18:30:36.178Z",
               "EditorCaption": ""
             }
           ]
